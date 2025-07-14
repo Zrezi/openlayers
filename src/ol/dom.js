@@ -29,9 +29,13 @@ export function createCanvasContext2D(width, height, canvasPool, settings) {
   if (height) {
     canvas.height = height;
   }
+  const contextOptions = {
+    ...settings,
+    willReadFrequently: true,
+  };
   //FIXME Allow OffscreenCanvasRenderingContext2D as return type
   return /** @type {CanvasRenderingContext2D} */ (
-    canvas.getContext('2d', settings)
+    canvas.getContext('2d', contextOptions)
   );
 }
 
